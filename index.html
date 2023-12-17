@@ -247,7 +247,9 @@
             window.submitOrder = function () {
                 // Récupérez les données du panier et transmettez-les à une autre page
                 const cartData = JSON.stringify(cart);
-                window.location.href = `file:///G:/Site%20Restaurant/Commande.html?table=${tableNumber}&cart=${encodeURIComponent(cartData)}`;
+                window.location.href = `Commande.html?table=${tableNumber}&cart=${encodeURIComponent(cartData)}`;
+				
+				
          
                 // Vous pouvez remplacer l'alerte par la redirection vers une autre page
             };
