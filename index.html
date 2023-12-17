@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #8c8c79;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #table-number {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .menu-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: calc(50% - 20px); /* 2 cardviews par ligne avec marge de 10px */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 180px; /* Ajustez la hauteur en fonction de vos besoins sur les téléphones */
+            object-fit: cover;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        #cart {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: auto;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #8c8c79;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-card {
+                width: 100%; /* Pleine largeur sur les petits écrans */
+            }
+        }
+
+        #submit-order-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Restaurant Fritha</h1>
+    </header>
+
+    <h3> Bienvenue à la <span id="table-number"></span></h3>
+
+    <h2>Menu</h2>
+    <div id="menu"></div>
+    <div id="cart"></div>
+
+  
+	
+   
+
+   
+	<button id="submit-order-btn" onclick="submitOrder()">Passer la commande</button>
+
+    <footer>
+        <p>Copyright © 2023 *** Restaurant Fritha *** Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function getTableNumberFromUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('table');
+            }
+
+            const tableNumber = getTableNumberFromUrl();
+            const tableNumberElement = document.getElementById('table-number');
+            tableNumberElement.textContent = `Table N° ${tableNumber || 'Non spécifiée'}`;
+
+            const menuItems = [
+                { name: 'Soupe de Lentilles', price: 450.00, image: 'https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-400-400-a0e4hdfaHawcm61653260469213-Soupe20de20lentille.jpg' },
+                { name: 'Houmous', price: 500.00, image: 'https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-400-400-fjtnngl5O5pc551653260551026-HOUMOUS.jpg' },
+                { name: 'Yogurtlu Patlican Salatasi', price: 500.00, image: 'https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-400-400-k66shqqdAlnqg21653260769589-Yogurtlu20Patlican20Salatasi.jpg' },
+                { name: 'Casbah Burger', price: 1300.00, image: 'https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-400-400-4xd19fxufbBxvJ1653261550498-Casbah20Burger20.jpg' },
+                { name: 'Casbah Cheese', price: 1350.00, image: 'https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-400-400-8meijueq12DdCM1653261537299-Casbah20Cheese.jpg' },
+            ];
+
+            const menuElement = document.getElementById('menu');
+            const cartElement = document.getElementById('cart');
+            const modal = document.getElementById('myModal');
+            const modalContent = document.getElementById('imgModal');
+            const cart = [];
+
+            menuItems.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-card';
+                menuItem.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <img src="${item.image}" alt="${item.name}" onclick="openModal('${item.image}')">
+                    <p>Price: ${item.price.toFixed(2)} DA</p>
+                    <button onclick="addToCart('${item.name}', ${item.price})">Ajouter</button><br><br>
+                    <input type="number" value="1" min="1">
+                `;
+                menuElement.appendChild(menuItem);
+            });
+
+            window.addToCart = function (itemName, itemPrice) {
+                const quantityInput = event.target.parentNode.querySelector('input[type="number"]');
+                const quantity = parseInt(quantityInput.value);
+
+                const existingItem = cart.find(item => item.name === itemName);
+
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    cart.push({ name: itemName, price: itemPrice, quantity: quantity, tableNumber: tableNumber });
+                }
+
+                updateCartDisplay();
+                alert('Article ajouté au panier avec succès!');
+            };
+
+            window.increaseQuantity = function (itemName) {
+                const existingItem = cart.find(item => item.name === itemName);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                    updateCartDisplay();
+                }
+            };
+
+            window.decreaseQuantity = function (itemName) {
+                const existingItem = cart.find(item => item.name === itemName);
+
+                if (existingItem && existingItem.quantity > 1) {
+                    existingItem.quantity -= 1;
+                    updateCartDisplay();
+                }
+            };
+
+            window.removeItem = function (itemName) {
+                const itemIndex = cart.findIndex(item => item.name === itemName);
+
+                if (itemIndex !== -1) {
+                    cart.splice(itemIndex, 1);
+                    updateCartDisplay();
+                }
+            };
+
+            function updateCartDisplay() {
+                cartElement.innerHTML = `<h3>Commande ${tableNumber ? 'Table ' + tableNumber : 'Non spécifiée'}</h3>`;
+
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    const total = (item.price * item.quantity).toFixed(2);
+
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <p>${item.quantity} x ${item.name} - Total: ${total} DA</p>
+                        <button onclick="increaseQuantity('${item.name}')">+</button>
+                        <button onclick="decreaseQuantity('${item.name}')">-</button>
+                        <button onclick="removeItem('${item.name}')">Supprimer</button>
+                    `;
+                    cartElement.appendChild(cartItem);
+                });
+
+                const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+
+                const totalElement = document.createElement('div');
+                totalElement.innerHTML = `<p>Total: ${totalPrice} DA</p>`;
+                cartElement.appendChild(totalElement);
+            }
+
+            function openModal(imageUrl) {
+                modal.style.display = 'block';
+                modalContent.src = imageUrl;
+            }
+
+            window.closeModal = function () {
+                modal.style.display = 'none';
+            };
+
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keyup', function (event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            window.confirmAddToCart = function () {
+                // Ajoutez ici le code pour ajouter l'article au panier
+                addToCart(itemName, itemPrice);
+
+                // Fermez la fenêtre modale
+                closeModal();
+            };
+
+            window.cancelAddToCart = function () {
+                // Annulez l'ajout à la commande, par exemple, ne faites rien ici
+                // Fermez la fenêtre modale
+                closeModal();
+            };
+
+            window.submitOrder = function () {
+                // Récupérez les données du panier et transmettez-les à une autre page
+                const cartData = JSON.stringify(cart);
+                window.location.href = `file:///G:/Site%20Restaurant/Commande.html?table=${tableNumber}&cart=${encodeURIComponent(cartData)}`;
+         
+                // Vous pouvez remplacer l'alerte par la redirection vers une autre page
+            };
+        });
+    </script>
+</body>
+</html>
