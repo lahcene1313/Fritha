@@ -10,7 +10,7 @@
             tableNumberElement.textContent = `Table N° ${tableNumber || 'Non spécifiée'}`;
 
             const menuItems = [
-                { plat: 'Pizza au feu de bois', composition: 'Tomate, olives et fromage', Prix: 1300.00},
+                { plat: 'Pizza au feu de bois', Prix: 1300.00},
 		{ plat: 'Soupe Fritha', Prix: 350.00},
                 { plat: 'Houmous Fritha', Prix: 500.00 },
                 { plat: 'Fritha Salatasi', Prix: 550.00},
