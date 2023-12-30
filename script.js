@@ -11,7 +11,7 @@
 
             const menuItems = [
                 { plat: 'Pizza au feu de bois', Prix: 1300.00},
-				{ plat: 'Soupe de Lentilles', Prix: 350.00},
+		{ plat: 'Soupe de Lentilles', Prix: 350.00},
                 { plat: 'Houmous', Prix: 500.00 },
                 { plat: 'Yogurtlu Salatasi', Prix: 550.00},
                 { plat: 'Burger', Prix: 1250.00},
@@ -28,7 +28,6 @@
                 menuItem.className = 'menu-card';
                 menuItem.innerHTML = `
                     <h3>${item.plat}</h3>
-                   
                     <p>Prix: ${item.Prix.toFixed(2)} DA</p>
                     <button class="button-Ajouter" onclick="addToCart('${item.plat}', ${item.Prix})">Ajouter</button><br><br>
                     <input type="number" value="1" min="1">
