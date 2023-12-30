@@ -23,17 +23,18 @@
             const orderSummaryDiv = document.getElementById('order-summary');
             const cart = [];
 
-            menuItems.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.className = 'menu-card';
-                menuItem.innerHTML = `
-                    <h3>${item.plat}</h3>
-                    <p>Prix: ${item.Prix.toFixed(2)} DA</p>
-                    <button class="button-Ajouter" onclick="addToCart('${item.plat}', ${item.Prix})">Ajouter</button><br><br>
-                    <input type="number" value="1" min="1">
-                `;
-                menuElement.appendChild(menuItem);
-            });
+           menuItems.forEach(item => {
+    const menuItem = document.createElement('div');
+    menuItem.className = 'menu-card';
+    menuItem.innerHTML = `
+        <h3>${item.plat}</h3>
+        <p>Prix: ${item.Prix.toFixed(2)} DA</p>
+        <button class="button-Ajouter" onclick="addToCart('${item.plat}', ${item.Prix})">Ajouter</button><br><br>
+        <input type="number" value="1" min="1">
+    `;
+    menuElement.appendChild(menuItem);
+});
+
 
             window.addToCart = function (itemName, itemPrix) {
                 const quantityInput = event.target.parentNode.querySelector('input[type="number"]');
