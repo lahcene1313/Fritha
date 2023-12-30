@@ -11,11 +11,11 @@
 
             const menuItems = [
                 { plat: 'Pizza au feu de bois', Prix: 1300.00},
-		{ plat: 'Soupe de Lentilles', Prix: 350.00},
-                { plat: 'Houmous', Prix: 500.00 },
-                { plat: 'Yogurtlu Salatasi', Prix: 550.00},
-                { plat: 'Burger', Prix: 1250.00},
-                { plat: 'Cheese', Prix: 1000.00 },
+		{ plat: 'Soupe Fritha', Prix: 350.00},
+                { plat: 'Houmous Fritha', Prix: 500.00 },
+                { plat: 'Fritha Salatasi', Prix: 550.00},
+                { plat: 'Fritha Burger', Prix: 1250.00},
+                { plat: 'Fritha Cheese', Prix: 1000.00 },
             ];
 
             const menuElement = document.getElementById('menu');
