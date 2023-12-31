@@ -10,7 +10,10 @@
     tableNumberElement.textContent = `Table N° ${tableNumber || 'Non spécifiée'}`;
 
     const menuItems = [
-        { plat: 'Pizza au feu de bois', Prix: 1300.00, description: 'Délicieuse pizza cuite au feu de bois.' },
+       { plat: 'Pain à l'ail & aux herbes', Prix: 300.00, description: 'Délicieuse Starter.' },
+        { plat: 'Chicken Tandoori', Prix: 550.00, description: 'Poulet au feu de bois.' },                         
+        { plat: 'Pizza Kids', Prix: 450.00, description: 'Délicieuse pizza enfants.' },                         
+       { plat: 'Pizza au feu de bois', Prix: 1300.00, description: 'Délicieuse pizza cuite au feu de bois.' },
         { plat: 'Soupe Fritha', Prix: 350.00, description: 'Soupe chaude et savoureuse.' },
         { plat: 'Houmous Fritha', Prix: 500.00, description: 'Dip crémeux à base de pois chiches.' },
         { plat: 'Fritha Salatasi', Prix: 550.00, description: 'Salade fraîche et saine.' },
