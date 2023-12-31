@@ -28,7 +28,7 @@
         menuItem.className = 'menu-card';
         menuItem.innerHTML = `
             <h3>${item.plat}</h3>
-            <p>Description: ${item.description}</p>
+            <p>${item.description}</p>
             <p>Prix: ${item.Prix.toFixed(2)} DA</p>
             <button class="button-Ajouter" onclick="addToCart('${item.plat}', ${item.Prix})">Ajouter</button><br><br>
             <input type="number" value="1" min="1">
