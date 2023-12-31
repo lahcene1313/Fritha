@@ -10,8 +10,7 @@
     tableNumberElement.textContent = `Table N° ${tableNumber || 'Non spécifiée'}`;
 
     const menuItems = [
-           
-         { plat: 'Pain à l\'ail & aux herbes', Prix: 300.00, description: 'Délicieuse Starter.' },
+        { plat: 'Pain à l\'ail & aux herbes', Prix: 300.00, description: 'Délicieuse Starter.' },
         { plat: 'Chicken Tandoori', Prix: 550.00, description: 'Poulet au feu de bois.' },                         
         { plat: 'Pizza Kids', Prix: 450.00, description: 'Délicieuse pizza enfants.' },                       
        { plat: 'Pizza au feu de bois', Prix: 1300.00, description: 'Délicieuse pizza cuite au feu de bois.' },
