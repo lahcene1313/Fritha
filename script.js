@@ -1,36 +1,37 @@
 
-        document.addEventListener('DOMContentLoaded', function () {
-            function getTableNumberFromUrl() {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get('table');
-            }
+       document.addEventListener('DOMContentLoaded', function () {
+    function getTableNumberFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('table');
+    }
 
-            const tableNumber = getTableNumberFromUrl();
-            const tableNumberElement = document.getElementById('table-number');
-            tableNumberElement.textContent = `Table N° ${tableNumber || 'Non spécifiée'}`;
+    const tableNumber = getTableNumberFromUrl();
+    const tableNumberElement = document.getElementById('table-number');
+    tableNumberElement.textContent = `Table N° ${tableNumber || 'Non spécifiée'}`;
 
-            const menuItems = [
-                { plat: 'Pizza au feu de bois', Prix: 1300.00},
-		{ plat: 'Soupe Fritha', Prix: 350.00},
-                { plat: 'Houmous Fritha', Prix: 500.00 },
-                { plat: 'Fritha Salatasi', Prix: 550.00},
-                { plat: 'Fritha Burger', Prix: 1250.00},
-                { plat: 'Fritha Cheese', Prix: 1000.00 },
-            ];
+    const menuItems = [
+        { plat: 'Pizza au feu de bois', Prix: 1300.00, description: 'Délicieuse pizza cuite au feu de bois.' },
+        { plat: 'Soupe Fritha', Prix: 350.00, description: 'Soupe chaude et savoureuse.' },
+        { plat: 'Houmous Fritha', Prix: 500.00, description: 'Dip crémeux à base de pois chiches.' },
+        { plat: 'Fritha Salatasi', Prix: 550.00, description: 'Salade fraîche et saine.' },
+        { plat: 'Fritha Burger', Prix: 1250.00, description: 'Burger savoureux avec garnitures.' },
+        { plat: 'Fritha Cheese', Prix: 1000.00, description: 'Assortiment de fromages de qualité.' },
+    ];
 
-            const menuElement = document.getElementById('menu');
-            const cartElement = document.getElementById('cart');
-            const orderSummaryDiv = document.getElementById('order-summary');
-            const cart = [];
+    const menuElement = document.getElementById('menu');
+    const cartElement = document.getElementById('cart');
+    const orderSummaryDiv = document.getElementById('order-summary');
+    const cart = [];
 
-           menuItems.forEach(item => {
-    const menuItem = document.createElement('div');
-    menuItem.className = 'menu-card';
-    menuItem.innerHTML = `
-        <h3>${item.plat}</h3>
-        <p>Prix: ${item.Prix.toFixed(2)} DA</p>
-        <button class="button-Ajouter" onclick="addToCart('${item.plat}', ${item.Prix})">Ajouter</button><br><br>
-        <input type="number" value="1" min="1">
+    menuItems.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-card';
+        menuItem.innerHTML = `
+            <h3>${item.plat}</h3>
+            <p>Description: ${item.description}</p>
+            <p>Prix: ${item.Prix.toFixed(2)} DA</p>
+            <button class="button-Ajouter" onclick="addToCart('${item.plat}', ${item.Prix})">Ajouter</button><br><br>
+            <input type="number" value="1" min="1">
     `;
     menuElement.appendChild(menuItem);
 });
