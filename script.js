@@ -19,6 +19,7 @@
         { plat: 'Fritha Salatasi', Prix: 550.00, description: 'Salade fraîche et saine.' },
         { plat: 'Fritha Burger', Prix: 1250.00, description: 'Burger savoureux avec garnitures.' },
         { plat: 'Fritha Cheese', Prix: 1000.00, description: 'Assortiment de fromages de qualité.' },
+       { plat: 'Thé', Prix: 0.00, description: 'Offert.' },
     ];
 
     const menuElement = document.getElementById('menu');
