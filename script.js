@@ -17,10 +17,10 @@
         { plat: 'Soupe Fritha', Prix: 350.00, description: 'Soupe chaude et savoureuse.' },
         { plat: 'Houmous Fritha', Prix: 500.00, description: 'Dip crémeux à base de pois chiches.' },
         { plat: 'Fritha Salatasi', Prix: 550.00, description: 'Salade fraîche et saine.' },
-        { plat: 'Entre cote à la plancha', Prix: 2200.00, description: 'viande saine des montagnes du djurdjura.' },  
+        { plat: 'Entre côte à la plancha', Prix: 2200.00, description: 'viande saine des montagnes du djurdjura.' },  
         { plat: 'Fritha Burger', Prix: 1250.00, description: 'Burger savoureux avec garnitures.' },
         { plat: 'Fritha Cheese', Prix: 1000.00, description: 'Assortiment de fromages de qualité.' },
-       { plat: "Thé", Prix: 0.00, description: 'Offert pour vous.' },
+       { plat: 'Thé', Prix: 0.00, description: 'Offert pour vous.' },
     ];
 
     const menuElement = document.getElementById('menu');
